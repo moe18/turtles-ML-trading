@@ -459,3 +459,4 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+/broker/alpaca/_config.py

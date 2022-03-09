@@ -4,7 +4,6 @@ from scipy.stats import normaltest
 
 
 def get_bar_stats(agg_trades):
-    print(agg_trades)
     vwap = agg_trades.apply(lambda x: np.average(x.close, weights=x.volume)).to_frame('vwap')
     ohlc = agg_trades.close.ohlc()
     vol = agg_trades.volume.sum().to_frame('vol')
@@ -22,7 +21,7 @@ def vol_sampling(data):
 
 
 def dollar_bar(trades):
-    value_per_min = trades.volume.mul(trades.close).sum() / (60 * 7.5 * 25)  # min per trading day
+    value_per_min = trades.volume.mul(trades.close).sum() / (60 * 7.5)  # min per trading day
     trades['cumul_val'] = trades.volume.mul(trades.close).cumsum()
     df = trades.reset_index()
     by_value = df.groupby(df.cumul_val.div(value_per_min).round().astype(int))

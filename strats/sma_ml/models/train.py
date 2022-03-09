@@ -35,7 +35,7 @@ def cross_val(clf, X_train, y_train_clf, thresh=.5):
 
 X_train, y_train, y_train_clf = get_data()[:100000]
 
-rnd_clf = RandomForestClassifier(n_estimators=700, random_state=42)
+rnd_clf = RandomForestClassifier(n_estimators=400, random_state=42,n_jobs=-1)
 
 #cross_val(rnd_clf, X_train, y_train_clf, .6)
 

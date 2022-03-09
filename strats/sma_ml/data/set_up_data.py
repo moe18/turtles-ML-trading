@@ -75,9 +75,8 @@ if __name__ == '__main__':
     pd.DataFrame(pd.concat(all_y_train)).to_parquet(
         '/Users/mordechaichabot/Projects/investment_framework/strats/sma_ml/data/prosseced_data/y_train.parquet')
 
-        #TODO: then train model
-        # cross val, look up in ml book how to do it
-        # find the point that you buy
+
+        ## TODO: find the point that you buy stratagy to do with prob
         # Kelly criterion
         # risk management
         # back test
