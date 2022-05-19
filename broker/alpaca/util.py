@@ -33,22 +33,25 @@ def alp_buy_market(stock_name, qty):
     )
 
 
-def alp_buy(stock_name, qty, top_limit, lower_limit, current_price):
-    api.submit_order(
-        symbol=stock_name,
-        side='buy',
-        type='market',
-        qty=qty,
-        time_in_force='day',
-        order_class='bracket',
-        take_profit=dict(
-            limit_price=top_limit,
-        ),
-        stop_loss=dict(
-            stop_price=lower_limit,
-            limit_price=lower_limit,
-        )
-    )
+def alp_buy_limit(stock_name, qty, limit_price):
+    api.submit_order(symbol=stock_name,
+                     qty=qty,
+                     side='buy',
+                     time_in_force='gtc',
+                     type='limit',
+                     limit_price=limit_price)
+
+
+def alp_buy_upper_lower_limit(stock_name, qty, upper_limit, lower_limit, buy_price):
+    api.submit_order(symbol=stock_name,
+                     qty=qty,
+                     side='buy',
+                     time_in_force='gtc',
+                     type='limit',
+                     limit_price=buy_price,
+                     order_class='bracket',
+                     stop_loss=dict(stop_price=lower_limit),
+                     take_profit=dict(limit_price=upper_limit))
 
 
 def find_order_id(orders, stock_name):
