@@ -13,8 +13,12 @@ class TradeStocks:
         self.transaction_cost = None
         self.stop_limit = None
 
-    def buy_stock(self):
-        alp_buy_market(self.stock_name, self.qty)
 
-    def sell_stock(self):
-        apl_sell(self.stock_name, self.amount_to_sell)
+    def get_data(self):
+
+
+    def get_order_type(self):
+
+
+    def get_order_amount(self):
+
