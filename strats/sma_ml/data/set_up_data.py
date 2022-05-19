@@ -4,7 +4,6 @@ from sklearn.model_selection import train_test_split
 
 
 from data.get_stock_univers import get_s_and_p_stocks
-from data.sampeling import vol_sampling, dollar_bar
 
 
 def get_sma_std(data, look_back):
@@ -38,8 +37,7 @@ if __name__ == '__main__':
 
             for stock_name in stock_hist.index.get_level_values(0).drop_duplicates(keep='first'):
                 try:
-                    dollar_bar_data = dollar_bar(stock_hist.loc[stock_name])
-                    dollar_bar_data.drop(['timestamp'], axis=1, inplace=True)
+                    dollar_bar_data = stock_hist.loc[stock_name]
 
                     dollar_bar_data = dollar_bar_data.pct_change()
                     dollar_bar_data['sma_1_mean'] = get_sma_mean(dollar_bar_data, 2)
