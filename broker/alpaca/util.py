@@ -23,6 +23,16 @@ def prof_change():
     return balance_change
 
 
+def alp_buy_market(stock_name, qty):
+    api.submit_order(
+        symbol=stock_name,
+        side='buy',
+        type='market',
+        qty=qty,
+        time_in_force='day'
+    )
+
+
 def alp_buy(stock_name, qty, top_limit, lower_limit, current_price):
     api.submit_order(
         symbol=stock_name,

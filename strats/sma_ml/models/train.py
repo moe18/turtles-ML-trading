@@ -1,12 +1,9 @@
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from joblib import dump, load
 import numpy as np
-from sklearn.model_selection import TimeSeriesSplit
+import pandas as pd
+from joblib import dump
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import recall_score, precision_score, confusion_matrix
-
-from sklearn.metrics import mean_squared_error
-import statsmodels.api as sm
+from sklearn.model_selection import TimeSeriesSplit
 
 
 def get_data():
@@ -28,16 +25,16 @@ def cross_val(clf, X_train, y_train_clf, thresh=.5):
         clf.fit(X_train_val, y_train_val)
         proba = rnd_clf.predict_proba(X_test_val)
         pred = np.where(proba[:, 1:] > thresh, 1, 0)
-        print('recall:',recall_score(pred, y_test_val))
+        print('recall:', recall_score(pred, y_test_val))
         print('precision', precision_score(pred, y_test_val))
-        print(confusion_matrix(y_test_val,pred))
+        print(confusion_matrix(y_test_val, pred))
 
 
 X_train, y_train, y_train_clf = get_data()[:100000]
 
-rnd_clf = RandomForestClassifier(n_estimators=400, random_state=42,n_jobs=-1)
+rnd_clf = RandomForestClassifier(n_estimators=400, random_state=42, n_jobs=-1)
 
-#cross_val(rnd_clf, X_train, y_train_clf, .6)
+# cross_val(rnd_clf, X_train, y_train_clf, .6)
 
 rnd_clf.fit(X_train, y_train_clf)
 
