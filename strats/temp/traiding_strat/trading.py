@@ -26,7 +26,9 @@ class TradeStocks:
 
 
     def get_order_type(self):
+        return None
 
 
     def get_order_amount(self):
+        return None
 

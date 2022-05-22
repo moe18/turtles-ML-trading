@@ -1,7 +1,7 @@
 from yahooquery import Ticker
 
 
-def get_stock_history_data(stock_name, start=None, end=None, period=None, interval=None):
+def get_stock_history_data(stock_name, start=None, end=None, period='ytd', interval='1d'):
     """
     gets stock history for `stock_name`
     :param stock_name: str; name of stock
@@ -14,7 +14,7 @@ def get_stock_history_data(stock_name, start=None, end=None, period=None, interv
     :return: pd.DataFrame columns = open, high, low, close, volume, dividend
     """
     ticker = Ticker(stock_name)
-    df = ticker.history(stock_name, start=start, end=end, period=period, interval=interval)
+    df = ticker.history(start=start, end=end, period=period, interval=interval)
 
     return df
 
